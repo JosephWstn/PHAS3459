@@ -41,10 +41,14 @@ public class VectorMethods {
 		double[] V3 = new double [] {0,0,0};
 
 
-		System.out.println("dot " + VectorMethods.dotProduct(V1,V2));
-		System.out.println("mag "+ VectorMethods.magnitude(V1));
 		System.out.println("The angle bewetween vectors (2,3,4) and (1,3,2) is " + VectorMethods.angle(V1,V2)+" Radians");
 		System.out.println("The angle bewetween vectors (2,3,4) and (0,0,0) is " + VectorMethods.angle(V1,V3)+" Radians");
 	}
 
 }
+
+/*
+The angle between vectors (2,3,4) and (0,0,0) is calculated to be "NaN". This is because the magnitude of the vector (0,0,0) is 0, and in the
+process of finding the angle, the dot product is divided by the product of the two magnitudes, resulting in an attempt to divide by 0.
+This is of course an invalid calculation, so the result NaN is provided.
+ */

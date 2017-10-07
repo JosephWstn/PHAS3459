@@ -68,9 +68,9 @@ public class AlgorithmControl {
 /*
 For an 8 second timer printing out the number of loops every 1000 loops (ie timer(8000,1000) ), total loops is around 765534000
 For an 8 second timer printing out the number of loops every 40,000 loops (ie timer(8000,40000), total number of loops is around 1001111578
-These values change by a little bit every time the code is ran.
-The values are different, always by a factor of around 1.3. This difference is because when the "if" statement is satisfied, more time passes
-before the "while" statement is run again because the "if" statement take a finite amount of time to execute.
+These values change by a little bit every time the code is ran, the run that prints every 40,000 loops is always greater.
+This difference is because when the "if" statement is satisfied, more time passes before the "while" statement is run again because the
+"if" statement take a finite amount of time to execute.
 When it prints for every 1000 loops, the "if" statement is satisfied much more often, so this longer and slower execution of the loop occurs
 more often, so it doesn't have the time to complete as many loops in 8 seconds. This is why the number of loops it had time to complete is
 much greater for the loop that printed every 40,000 loops, it can process more loops per second.
