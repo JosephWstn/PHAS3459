@@ -28,11 +28,11 @@ public class AlgorithmControl {
 
 	// Timer for "maxTime" milliseconds,number of loops printed every "loopSteps" loops 
 	static int timer (long maxTime, int loopSteps) {
-		long TStart = System.currentTimeMillis(); 
+		long TStart = System.currentTimeMillis(); //starting time
 		long TEnd = TStart + maxTime; 
 		int t=0;
-		while (System.currentTimeMillis() <= TEnd) {
-			t++; 
+		while (System.currentTimeMillis() <= TEnd) { //
+			t++; //loop counter 
 			if (t % loopSteps == 0) { 
 				System.out.println("Number of loops: "+t);
 			}

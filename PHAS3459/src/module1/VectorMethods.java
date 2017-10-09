@@ -10,7 +10,7 @@ public class VectorMethods {
 	static double dotProduct (double []a,double []b) {
 		double R=0;
 		for (int i=0; i<a.length; i++) {
-			R += a[i] * b[i];
+			R += a[i] * b[i]; //multiply corresponding vector components
 		}
 		return  R;
 	}
@@ -19,7 +19,7 @@ public class VectorMethods {
 	static double magnitude (double[] a) {
 		double M=0;
 		for (int i =0; i<a.length; i++) {
-			M += a[i] * a[i];
+			M += a[i] * a[i]; //mulitply corresponding vector componenets
 		}
 		return  Math.sqrt(M);
 	}
