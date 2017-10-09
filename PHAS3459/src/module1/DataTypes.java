@@ -53,11 +53,11 @@ public class DataTypes {
 
 
 
-		/*
-		As a double, a is printed as 4.99
-		As an int, a is printed as 4.0.
-		It prints out 4.0 as java will always round down when rounding to an integer, and since
-		a is now classed as an integer, it will round down to an integer, which is 4.0.
-		 */
+		System.out.println("As a double, a is printed as 4.99.\nAs an int, a is printed as 4.0.\nIt prints out 4.0 as java will always round down when rounding to an integer, and since a is now classed as an integer, it will round down to an integer, which is 4.0.");
+
+
+
+
+
 	}
 }

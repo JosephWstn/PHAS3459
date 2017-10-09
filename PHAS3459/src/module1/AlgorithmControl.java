@@ -21,7 +21,6 @@ public class AlgorithmControl {
 
 	// Add 0.2 to 2.4 until it equals 8.8
 	static void increment() {
-
 		for (double i =2.4; i<=8.8; i=i+0.2) { 
 			System.out.format("%.1f %n ",i); //%.1f: to 1 decimal place. %n: print on a new line
 		}
@@ -61,17 +60,17 @@ public class AlgorithmControl {
 		decrement();
 		increment();
 		loopcomp();
+		System.out.println("The number of loops for the runs that print every 40k loops and every 1k loops are different.\nThe number of loops for the run that prints every 40,000 loops is always greater.\nThis difference is because when the 'if' statement is satisfied, more time passes before the 'while' statement is run again\nbecause the 'if' statement take a finite amount of time to execute.\nWhen it prints for every 1000 loops, the 'if' statement is satisfied much more often, so this longer and slower\nexecution of the loop occurs more often, so it can't complete as many loops in 8 seconds. This is why the\nnumber of loops it had time to complete is much greater for the loop that printed every 40,000 loops, it can process more\nloops per second.");
 	}
 }
 
 
-/*
-For an 8 second timer printing out the number of loops every 1000 loops (ie timer(8000,1000) ), total loops is around 765534000
-For an 8 second timer printing out the number of loops every 40,000 loops (ie timer(8000,40000), total number of loops is around 1001111578
-These values change by a little bit every time the code is ran, the run that prints every 40,000 loops is always greater.
-This difference is because when the "if" statement is satisfied, more time passes before the "while" statement is run again because the
-"if" statement take a finite amount of time to execute.
-When it prints for every 1000 loops, the "if" statement is satisfied much more often, so this longer and slower execution of the loop occurs
-more often, so it doesn't have the time to complete as many loops in 8 seconds. This is why the number of loops it had time to complete is
-much greater for the loop that printed every 40,000 loops, it can process more loops per second.
- */
+
+
+
+
+
+
+
+
+
