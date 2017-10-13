@@ -3,11 +3,11 @@ import java.lang.Math.*; //maths functions
 // variables lower case
 public class ThreeVector {
 
-	double x,y,z; 
+	double x,y,z; //member variables
 
-	public ThreeVector() {}; //this is a constructor apparently. what the fuck is that.
+	public ThreeVector() {}; //constructor ThreeVector
 	public ThreeVector(double x, double y, double z) {
-		this.x = x; //no fucking clue what these do
+		this.x = x; 
 		this.y = y;
 		this.z = z;
 	}
@@ -76,7 +76,6 @@ public class ThreeVector {
 		double ang2 = angle(this,a);
 		return ang2;
 	}
-
-
-
 }
+
+
