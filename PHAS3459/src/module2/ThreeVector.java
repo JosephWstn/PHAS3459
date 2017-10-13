@@ -5,7 +5,7 @@ public class ThreeVector {
 
 	double x,y,z; //member variables
 
-	public ThreeVector() {}; //constructor ThreeVector
+	//constructor ThreeVector
 	public ThreeVector(double x, double y, double z) {
 		this.x = x; 
 		this.y = y;

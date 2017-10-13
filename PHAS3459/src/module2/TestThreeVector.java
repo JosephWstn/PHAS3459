@@ -39,6 +39,9 @@ public class TestThreeVector {
 		
 
 		System.out.println("The output when there is no 'toString' method is 'module2.ThreeVector@15db9742'. This output is because java is trying to print \nthe object 'ThreeVector', and it has no explicit way to convert this object made of doubles to a readable string \nwith a toString method it has an explicit way to convert these double in the object to a string of doubles.");
+		
+		
+		
 	}
 
 }
