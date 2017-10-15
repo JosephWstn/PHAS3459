@@ -1,6 +1,5 @@
 package module2;
 import java.lang.Math.*; //maths functions
-// variables lower case
 public class ThreeVector {
 
 	double x,y,z; //member variables
@@ -12,72 +11,88 @@ public class ThreeVector {
 		this.z = z;
 	}
 
-
-	public double magnitude() { //find the magnitude
+	// to find the magnitude of a threevector 
+	public double magnitude() { 
 
 		double m = x*x + y*y + z*z;
 		return Math.sqrt(m);
 	}
 
-
-	public ThreeVector unitVector() { //find unit vector of a vector
-		ThreeVector UV = new ThreeVector(x/this.magnitude(), y/this.magnitude(), z/this.magnitude() ); //yaknow mathsy stuff
+	// Find the unitvector of a vector
+	public ThreeVector unitVector() { 
+		// divide each component by the magnitude
+		ThreeVector UV = new ThreeVector(x/this.magnitude(), y/this.magnitude(), z/this.magnitude() ); 
 		return UV;
 	}
 
-	public String toString(){ //converts my "object" to a string. idk what the fuck my object is
+	//To convert ThreeVector to a string x,y,z
+	public String toString(){ 
 		return "("+x+","+y+","+z+")";
 	}
 
-
-	static double scalarProduct(ThreeVector A, ThreeVector B){
-		double SP = (A.x* B.x + A.y *B.y + A.z * B.z);
-		return SP;
+	// find scalar product of 2 vectors
+	static double scalarProduct(ThreeVector a, ThreeVector b){
+		// multiply corresponding coponents
+		double sp = (a.x* b.x + a.y *b.y + a.z * b.z);
+		return sp;
 	}
 
-
-	static ThreeVector vectorProduct(ThreeVector A, ThreeVector B) {
-		double NX = A.y * B.z - A.z * B.y;
-		double NY = A.x * B.z - A.z * B.x;
-		double NZ = A.x * B.y - A.y * B.x;
-		ThreeVector VP = new ThreeVector (NX , -NY, NZ);
-		return VP;
-
-	}
-
-	static ThreeVector add (ThreeVector A, ThreeVector B) {
-		ThreeVector a = new ThreeVector (A.x + B.x, A.y + B.y, A.z + B.z);
-		return a;
+	// find vector product of 2 vectors
+	static ThreeVector vectorProduct(ThreeVector a, ThreeVector b) {
+		// find the components of the new vector seperately
+		double nx = a.y * b.z - a.z * b.y;
+		double ny = a.x * b.z - a.z * b.x;
+		double nz = a.x * b.y - a.y * b.x;
+		//piece together the new vector
+		ThreeVector vp = new ThreeVector (nx , -ny, nz);
+		return vp;
 
 	}
 
-	static double angle (ThreeVector A, ThreeVector B) {
-		double cosang = scalarProduct(A,B) / (A.magnitude() * B.magnitude());
+	// add together 2 vectors
+	static ThreeVector add (ThreeVector a, ThreeVector b) {
+		//add the corresponding components
+		ThreeVector p = new ThreeVector (a.x + b.x, a.y + b.y, a.z + b.z);
+		return p;
+
+	}
+
+	//find the angle between two vectors
+	static double angle (ThreeVector a, ThreeVector b) {
+		//scalar product divided by product of magnitude
+		double cosang = scalarProduct(a,b) / (a.magnitude() * b.magnitude());
 		return Math.acos(cosang);
 	}
 
+	// non-static methods that calls on static methods
+
+	//non-static version of scalar product
 	public double scalarProduct(ThreeVector a){
-		double SP2 = scalarProduct(this,a);
-		return SP2;
+		//takes one argument, and dots it with the specified vector
+		double sp = scalarProduct(this,a);
+		return sp;
 	}
 
+	// non-static vector product
 	public ThreeVector vectorProduct(ThreeVector a){
-		ThreeVector VP2 = vectorProduct(this,a);
-		return VP2;
+		//cross product the argument with specified vector
+		ThreeVector vp = vectorProduct(this,a);
+		return vp;
 	}
 
-
+	//non-static vector addition
 	public ThreeVector add (ThreeVector a){
-		ThreeVector a2 = add(this,a); 
-		return a2;
+		//add argument with specified vectos
+		ThreeVector s = add(this,a); 
+		return s;
 	}
 
+	//non-static angle between two vectors
 	public double angle(ThreeVector a) {
-		double ang2 = angle(this,a);
-		return ang2;
+		//finds angle between argument and specified vector
+		double ang = angle(this,a);
+		return ang;
 	}
-
-
 
 }
 
