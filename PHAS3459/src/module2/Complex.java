@@ -7,8 +7,8 @@ public class Complex {
 
 	//Constructor for complex numbers r= real, i=imaginary
 	public Complex(double r, double i) {
-		this.r = i; 
-		this.r = i;
+		this.r = r; 
+		this.i = i;
 	}
 
 	//return real component
@@ -54,8 +54,9 @@ public class Complex {
 
 	// returns in the form of Re + Im*i
 	public String toString(){ 
-		return "("+r+" + "+i+"i,)";
+		return "("+r+", + " +i+"i)";
 	}
+
 
 	//find the complex number corresponding to a given magnitude and argument
 	public static Complex setFromModulusAngle(double mag, double ang){
@@ -81,14 +82,14 @@ public class Complex {
 		Complex s = new Complex (a.r - b.r , a.i - b.i);
 		return s;
 	}
-	
+
 	//multiply two complex numbers
 	public static Complex multiply (Complex a, Complex b){
 		//input the Re and Im parts of the multiplied out complex numbers
 		Complex m = new Complex (a.r * b.r - a.i*b.i , a.r * b.i + a.i*b.r);
 		return m;
 	}
-	
+
 	//divide two complex numbers
 	public static Complex divide (Complex a, Complex b){
 		//Re and Im parts after rationalising the denominator

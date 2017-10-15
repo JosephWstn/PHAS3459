@@ -2,7 +2,8 @@ package module2;
 import java.lang.Math.*; //maths functions
 public class ThreeVector {
 
-	double x,y,z; //member variables
+	//member variables
+	double x,y,z; 
 
 	//constructor ThreeVector
 	public ThreeVector(double x, double y, double z) {
@@ -13,7 +14,6 @@ public class ThreeVector {
 
 	// to find the magnitude of a threevector 
 	public double magnitude() { 
-
 		double m = x*x + y*y + z*z;
 		return Math.sqrt(m);
 	}
@@ -21,8 +21,8 @@ public class ThreeVector {
 	// Find the unitvector of a vector
 	public ThreeVector unitVector() { 
 		// divide each component by the magnitude
-		ThreeVector UV = new ThreeVector(x/this.magnitude(), y/this.magnitude(), z/this.magnitude() ); 
-		return UV;
+		ThreeVector uv = new ThreeVector(x/this.magnitude(), y/this.magnitude(), z/this.magnitude() ); 
+		return uv;
 	}
 
 	//To convert ThreeVector to a string x,y,z
@@ -59,10 +59,11 @@ public class ThreeVector {
 
 	//find the angle between two vectors
 	static double angle (ThreeVector a, ThreeVector b) {
-		//scalar product divided by product of magnitude
+		//to find the cosine of the angle
 		double cosang = scalarProduct(a,b) / (a.magnitude() * b.magnitude());
 		return Math.acos(cosang);
 	}
+
 
 	// non-static methods that calls on static methods
 
