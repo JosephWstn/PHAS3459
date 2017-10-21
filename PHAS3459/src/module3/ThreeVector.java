@@ -20,6 +20,7 @@ public class ThreeVector {
 
 	// Find the unitvector of a vector
 	public ThreeVector unitVector() throws Exception {
+		//exception if trying to find unitvector of (0,0,0)
 		if (this.x == 0 && this.y == 0 && this.z ==0) {
 			throw new Exception("ThreeVector (0,0,0) has no unit vector");
 		}
@@ -62,10 +63,11 @@ public class ThreeVector {
 
 	//find the angle between two vectors
 	static double angle (ThreeVector a, ThreeVector b) throws Exception{
-		//to find the cosine of the angle
+		//exception if eithe vector is (0,0,0)
 		if ((a.x ==0 && a.y==0 && a.z == 0) || (b.x ==0 && b.y == 0 && b.z ==0)) {
 			throw new Exception("Trying to divide by 0 magnitude");
 		}
+		//to find the cosine of the angle
 		double cosang = scalarProduct(a,b) / (a.magnitude() * b.magnitude());
 		return Math.acos(cosang);
 	}
@@ -89,13 +91,14 @@ public class ThreeVector {
 
 	//non-static vector addition
 	public ThreeVector add (ThreeVector a){
-		//add argument with specified vectos
+		//add argument with specified vectors
 		ThreeVector s = add(this,a); 
 		return s;
 	}
 
 	//non-static angle between two vectors
 	public double angle(ThreeVector a) throws Exception{
+		//exception if either vector is (0,0,0)
 		if ((a.x ==0 && a.y==0 && a.z == 0) || (this.x ==0 && this.y == 0 && this.z ==0)) {
 			throw new Exception("Tyring to divide by 0 magnitude");
 		}

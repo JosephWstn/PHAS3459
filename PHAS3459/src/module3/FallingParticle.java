@@ -8,8 +8,9 @@ public class FallingParticle {
 
 	//constructor for falling particle with arguments mass and dragg co-eff
 	public FallingParticle(double m, double d) throws Exception {
+		//exception if mass or drag coeff is negative. Or if mass is 0. 
 		if (m <= 0) {
-			throw new Exception("Cannot have negative mass");
+			throw new Exception("Cannot have negative or zero mass");
 		}
 		if (d < 0) {
 			throw new Exception("Cannot have negative drag coefficient");
@@ -20,8 +21,9 @@ public class FallingParticle {
 
 	//height setter
 	public static double setH(double h) throws Exception {
+		//exception if trying to drop from negative or zero height
 		if (h<=0) {
-			throw new Exception("Cannot drop from negative height");
+			throw new Exception("Cannot drop from negative or zero height");
 		}
 		return h;
 	}

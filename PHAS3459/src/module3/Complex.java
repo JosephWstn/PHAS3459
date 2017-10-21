@@ -41,10 +41,11 @@ public class Complex {
 
 	//normalise the complex number
 	public Complex normalised() throws Exception{
-		//divide each component by the modulus
-		if (this.r==0 && this.i ==0) {
+		//throw exception if complex number is (0,0) as cannot divide by 0
+		if (this.r==0 && this.i ==0) { 
 			throw new Exception("Trying to divide by zero");
 		}
+		//divide each component by the modulus
 		Complex norm = new Complex (r/this.modulus(), i/this.modulus());
 		return norm;
 	}
@@ -95,10 +96,11 @@ public class Complex {
 
 	//divide two complex numbers
 	public static Complex divide (Complex a, Complex b) throws Exception{
-		//Re and Im parts after rationalising the denominator
+		//exception if trying to divide by 0
 		if (b.r==0 && b.i ==0) {
 			throw new Exception("Trying to divide by zero");
 		}
+		//Re and Im parts after rationalising the denominator
 		Complex d = new Complex ((a.r*b.r + a.i*b.i)/(b.r*b.r+b.i*b.i),(a.i*b.r-a.r*b.i)/(b.r*b.r+b.i*b.i));
 		return d;
 
