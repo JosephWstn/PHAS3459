@@ -3,11 +3,11 @@ package module3;
 public class TestExceptions {
 
 	public static void main(String[] args)  {
-		
+
 		//define complex numbers to trigger exceptions
 		Complex c1= new Complex (1,2);
 		Complex c2 = new Complex (0,0);
-		
+
 		//define vectors to trigger exceptions
 		ThreeVector v1 = new ThreeVector (1,2,3);
 		ThreeVector v2 = new ThreeVector (0,0,0);
@@ -19,7 +19,7 @@ public class TestExceptions {
 		catch (Exception e) {
 			System.out.println(e);
 		}
-		
+
 		//try particle with negative drag coeff
 		try {
 			FallingParticle p2 = new FallingParticle(3,-4);
@@ -60,7 +60,7 @@ public class TestExceptions {
 		catch (Exception e) {
 			System.out.println(e);
 		}
-		
+
 		//try to find unit vector of (0,0,0)
 		try {
 			System.out.println(v2.unitVector());
@@ -68,7 +68,7 @@ public class TestExceptions {
 		catch (Exception e) {
 			System.out.println(e);
 		}
-		
+
 		//try to drop particle from negative height
 		try {
 			FallingParticle.setH(-5);
@@ -79,3 +79,4 @@ public class TestExceptions {
 
 	}
 }
+ 

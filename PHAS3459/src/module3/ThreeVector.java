@@ -63,7 +63,7 @@ public class ThreeVector {
 
 	//find the angle between two vectors
 	static double angle (ThreeVector a, ThreeVector b) throws Exception{
-		//exception if eithe vector is (0,0,0)
+		//exception if either vector is (0,0,0)
 		if ((a.x ==0 && a.y==0 && a.z == 0) || (b.x ==0 && b.y == 0 && b.z ==0)) {
 			throw new Exception("Trying to divide by 0 magnitude");
 		}
@@ -107,6 +107,6 @@ public class ThreeVector {
 		return ang;
 	}
 
-}
+} 
 
 
