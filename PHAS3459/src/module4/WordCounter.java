@@ -14,7 +14,7 @@ public class WordCounter {
 		InputStreamReader isr = new InputStreamReader(is);
 		return new BufferedReader(isr);	
 	}
-
+ 
 	/*
 	 * Argument is filename
 	 * Reades file and returns the file as bufferedreader

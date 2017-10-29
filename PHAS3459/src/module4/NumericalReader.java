@@ -13,7 +13,7 @@ public class NumericalReader {
 	static int nValues;
 	private String file;
 
-
+ 
 	/*
 	 * User inputs string from keyboard
 	 * stores as string
@@ -47,7 +47,7 @@ public class NumericalReader {
 		this.maxValue = 0;
 		this.nValues = 0;
 		this.sumOfValues = 0;
-		System.out.println("The file will be saved in: "+ dataFile);
+		System.out.println("The file will be located at: "+ dataFile);
 	}
 
 	/*
@@ -133,7 +133,7 @@ public class NumericalReader {
 
 
 		//initialising save file
-		String saveFile1 = ("D:" + File.separator + saveDir + File.separator + "numbers1.txt");
+		String saveFile1 = (saveDir + File.separator + "numbers1.txt");
 
 
 		// File 1
@@ -173,7 +173,7 @@ public class NumericalReader {
 		//initialise numericalreader, buffered reader & savefile
 		NumericalReader nr2 = new NumericalReader();
 		BufferedReader reader2 = null;
-		String saveFile2 = ("D:" + File.separator + saveDir + File.separator + "numbers2.txt");
+		String saveFile2 = (saveDir + File.separator + "numbers2.txt");
 
 		try{
 			//get .txt file from URL
