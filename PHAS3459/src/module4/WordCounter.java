@@ -4,7 +4,10 @@ import java.net.*;
 import java.util.Scanner;
 public class WordCounter {
 
-
+	/*
+	 * Argument is URL as string
+	 * Returns the URL as a buffered reader
+	 */
 	public static BufferedReader brFromURL(String urlName) throws Exception {
 		URL u = new URL (urlName);
 		InputStream is = u.openStream();
@@ -12,15 +15,26 @@ public class WordCounter {
 		return new BufferedReader(isr);	
 	}
 
+	/*
+	 * Argument is filename
+	 * Reades file and returns the file as bufferedreader
+	 */
 	public static BufferedReader brFromFile(String fileName) throws Exception{
 		FileReader fr = new FileReader(fileName);
 		return new BufferedReader(fr);
 	}
 
+	/*
+	 * Method counts words in a file
+	 * Argument is the data as a bufferedreader
+	 * returns number of words
+	 */
 	public static int countWordsInResource(BufferedReader dataAsBR) {
+		//buffered reader to scanner
 		Scanner s = new Scanner(dataAsBR);
 		int sum = 0;
 		while (s.hasNext()) {
+			//update sum
 			sum++;
 			s.next();
 		}
