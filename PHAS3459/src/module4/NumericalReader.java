@@ -177,7 +177,7 @@ public class NumericalReader {
 
 		try{
 			//get .txt file from URL
-			reader2 = nr2.brFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_data2.txt");
+			reader2 = nr2.brFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data-extra/module4/module4_data3.txt");
 
 			//method initializes values
 			nr2.analysisStart(saveFile2);
