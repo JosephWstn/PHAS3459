@@ -63,14 +63,65 @@ public class SquareMatrix {
 	}
 
 	public static SquareMatrix add(SquareMatrix sm1, SquareMatrix sm2) throws Exception {
-		SquareMatrix sm3 = new SquareMatrix(null);
+		if (sm1.elements.length != sm2.elements.length){
+			throw new Exception ("To add matrices they must be the same size.");
+		}
 		double currentElement;
-		for (int t = 0; t < sm1.elements.length; t++) {
-			for (int s = 0; s < sm1.elements.length; s++) {
-				currentElement = sm1.elements[s][t] + sm2.elements[s][t];
-				sm3.elements[s][t] = currentElement;
+		double[][] currentElementArray = new double[sm1.elements.length][sm1.elements[0].length];
+		for (int i=0; i<sm1.elements.length; i++) {
+			for (int j=0; j<sm1.elements.length; j++) {
+				currentElement = sm1.elements[i][j] + sm2.elements[i][j];
+				currentElementArray[i][j] = currentElement;
 			}
 		}
-		return sm3;
+		return new SquareMatrix(currentElementArray);
+	}
+	
+	public SquareMatrix add(SquareMatrix sm1) throws Exception{
+		SquareMatrix added = SquareMatrix.add(this,sm1);
+		return added;
+	}
+
+	public static SquareMatrix subtract(SquareMatrix sm1, SquareMatrix sm2)throws Exception{
+		if (sm1.elements.length != sm2.elements.length){
+			throw new Exception ("To subtract matrices they must be the same size.");
+		}
+		double currentElement;
+		double [][] currentElementArray = new double [sm1.elements.length][sm1.elements[0].length];
+		for (int i=0; i<sm1.elements.length;i++){
+			for (int j=0; j<sm1.elements.length;j++){
+				currentElement = sm1.elements[i][j] - sm2.elements[i][j];
+				currentElementArray [i][j]= currentElement;
+			}
+		}
+		return new SquareMatrix(currentElementArray);
+	}
+	
+	public SquareMatrix subtract(SquareMatrix sm1) throws Exception{
+		SquareMatrix sub = SquareMatrix.subtract(this,sm1);
+		return sub;
+	}
+
+	public static SquareMatrix multiply(SquareMatrix sm1, SquareMatrix sm2)throws Exception{
+		if (sm1.elements.length != sm2.elements.length){
+			throw new Exception ("To multiply squarematrices they must be the same size.");
+		}
+		double currentElement;
+		double[][] currentElementArray = new double [sm1.elements.length][sm1.elements[0].length];
+		for (int i =0; i<sm1.elements.length;i++){
+			for (int j = 0; j<sm1.elements.length;j++){
+				for (int k =0; k<sm1.elements.length;k++){
+
+					currentElement = sm1.elements[i][k] * sm2.elements[k][j];
+					currentElementArray[i][j] += currentElement;
+				}
+			}
+		}
+		return new SquareMatrix(currentElementArray);
+	}
+	
+	public SquareMatrix multiply(SquareMatrix sm1) throws Exception{
+		SquareMatrix mul = SquareMatrix.multiply(this,sm1);
+		return mul;
 	}
 }

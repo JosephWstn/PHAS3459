@@ -32,7 +32,19 @@ public class TestSquareMatrix {
 		
 		SquareMatrix dm = new SquareMatrix(da);
 		
+		
+		SquareMatrix atb = SquareMatrix.multiply(am,bm);
+		SquareMatrix bta = SquareMatrix.multiply(bm,am);
+		SquareMatrix ctd = SquareMatrix.multiply(cm, dm);
+		
 		System.out.println(SquareMatrix.add(am,bm));
+		System.out.println(SquareMatrix.subtract(am,bm));
+		System.out.println(atb);
+		System.out.println(bta);
+		System.out.println(SquareMatrix.subtract(atb,bta));
+		System.out.println(ctd);
+		System.out.println(ctd.equals(SquareMatrix.unitMatrix(2)));
+		
 		
 	}	
 }
