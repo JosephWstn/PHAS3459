@@ -1,14 +1,11 @@
-package module5;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.Scanner;
+package module6;
 
 public class DataPoint {
 
 	double  x, y, ey;
+
+	public DataPoint() {};
+
 
 	/*
 	 * Constructor object DataPoint of 3 doubles
@@ -33,4 +30,10 @@ public class DataPoint {
 	public double getey(){
 		return ey;
 	}
+
+	public String toString() {
+		return ("No Label: x = " + this.x + ", y = " + this.y + " \u00B1 "+ this.ey );
+	}
+
 }
+
