@@ -50,7 +50,7 @@ public class DataAnalysis {
 				fifties++;
 				System.out.println("for the " + fifties +"th 50 values:");
 				System.out.println("Above: "+above);
-				System.out.println("Below: "+below);
+				System.out.println("Below: "+below+"\n");
 				successes.add(below);
 				above = 0;
 				below = 0;

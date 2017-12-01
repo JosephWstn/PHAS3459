@@ -3,8 +3,7 @@ package module6;
 public class PowerLawTheory implements Theory{
 
 	double n, x;
-	PowerLawTheory(double x, double n){
-		this.x = x;
+	PowerLawTheory(double n){
 		this.n = n;
 	}
 	
@@ -14,7 +13,7 @@ public class PowerLawTheory implements Theory{
 	}
 	
 	public String toString() {
-		return ("x^" + this.n);
+		return ("y = x^" + this.n);
 	}
 
 }

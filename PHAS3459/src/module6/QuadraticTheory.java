@@ -4,8 +4,10 @@ public class QuadraticTheory implements Theory{
 
 	double a, b, c, x;
 	
-	QuadraticTheory(double x){
-		this.x = x;
+	QuadraticTheory(double a, double b, double c){
+		this.a = a;
+		this.b = b;
+		this.c = c;
 	}
 	
 	public double y (double x) {
@@ -13,7 +15,7 @@ public class QuadraticTheory implements Theory{
 	}
 	
 	public String toString() {
-		return (this.a + "x^2 + " + this.b + "x + " + this.c );
+		return ("y= "+this.a + "x^2 + " + this.b + "x + " + this.c );
 	}
 	
 }

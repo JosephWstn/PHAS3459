@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class ChiSquared implements GoodnessOfFitCalculator {
-	
+
 	public double goodnessOfFit(Collection <DataPoint> p, Theory t){
 		double chiSq = 0;
 
@@ -21,6 +21,4 @@ public class ChiSquared implements GoodnessOfFitCalculator {
 		}
 		return chiSq;
 	}
-	
-	
-}	
+}
