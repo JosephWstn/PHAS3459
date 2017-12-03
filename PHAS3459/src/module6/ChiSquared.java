@@ -5,6 +5,7 @@ import java.util.Collection;
 
 public class ChiSquared implements GoodnessOfFitCalculator {
 
+	//find the goodness of fit using chi squared
 	public double goodnessOfFit(Collection <DataPoint> p, Theory t){
 		double chiSq = 0;
 
@@ -12,7 +13,7 @@ public class ChiSquared implements GoodnessOfFitCalculator {
 		for(DataPoint dp : p){
 
 			//use getters to assign x, y, ey
-			double yt = t.y(dp.getx());
+			double yt = t.y(dp.getx()); 
 			double ym = dp.gety();
 			double ey = dp.getey();
 
