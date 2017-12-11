@@ -1,5 +1,7 @@
 package module8;
 
+import java.util.concurrent.TimeUnit;
+
 public class CountdownTask implements Runnable {
 
 	//member variable number of seconds to count down
@@ -15,18 +17,22 @@ public class CountdownTask implements Runnable {
 
 	/*
 	 * Run method for countdown task
+	 * Decrease from "secs" to 0, printing every second 
 	 */
 	public void run() {
-
-
-		long TStart = System.currentTimeMillis(); //starting time
-		long TEnd = TStart + 10000; 
-		while (System.currentTimeMillis() <= TEnd) { // 
-			if (System.currentTimeMillis() % 1000000 == 0) { 
-				secs--;
-				System.out.println("Number of seconds: "+secs);
+		while (secs>0) {
+			System.out.println("Number of seconds: "+ secs);
+			secs--;
+			
+			//Wait for 1 second to print the new value
+			try{
+				Thread.sleep(1000);
 			}
+			catch(Exception e){
+				e.printStackTrace();
+			} 
 		}
+		System.out.println("Number of seconds: 0");
 		return;
 	}
 }

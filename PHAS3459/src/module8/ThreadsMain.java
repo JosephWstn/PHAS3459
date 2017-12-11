@@ -22,8 +22,5 @@ public class ThreadsMain {
 		}
 
 		catch(InterruptedException e) {}
-
-
 	}
-
 }

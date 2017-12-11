@@ -40,7 +40,7 @@ public class ThreadsTimer {
 		//create pool of nThreads (4)
 		ExecutorService threadPool = Executors.newFixedThreadPool(nThreads);
 
-		//use Future re represent results of each parallel calculation
+		//use Future to represent results of each parallel calculation
 		List<Future<Double>> futures = new ArrayList<Future<Double>>();
 
 		//loop through the threads
@@ -68,14 +68,14 @@ public class ThreadsTimer {
 
 		//find and print time elapsed
 		long fourThreadTimeTaken = fourThreadFinishTime - fourThreadStartTime;
-		System.out.println("Time taken for the single thread = " + fourThreadTimeTaken + " milliseconds");
+		System.out.println("Time taken for four threads = " + fourThreadTimeTaken + " milliseconds");
 
 
 		//Comparison and discussion of the two methods
 		double timeComp = ( (double)oneThreadTimeTaken / (double) fourThreadTimeTaken);
 
 		System.out.println();
-		System.out.format("The single thread took around "+ timeComp + " times longer than the four threads.\nThis is expected as the four threads method has four threads working through the task at the same time. It is not as high as four times as quick because\nusing four threads requires more processing power so the individual threads cannot work as fast as a single thread.\nTo 10 dp, the expected value is 3.1415926535, no method is consistently more accurate than the other as they are both doing the same process, except the four threads is splitting\nthe task into four and doing it at the same time.");
+		System.out.printf("The single thread took around "+ String.format("%.3f", timeComp)+ " times longer than the four threads.\nThis is expected as the four threads method has four threads working through the task at the same time. It is not as high as four times as quick because\nusing four threads requires more processing power so the individual threads cannot work as fast as a single thread.\nTo 10 dp, the expected value is 3.1415926535, no method is consistently more accurate than the other as they are both doing the same process, except the four threads is splitting\nthe task into four and doing it at the same time.");
 	}
 
-}
+} 
