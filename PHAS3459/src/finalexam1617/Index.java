@@ -8,6 +8,7 @@ public class Index {
 
 	public Index() {}
 
+	//constructor for the object index 
 	public Index(String line) {
 		Scanner sc = new Scanner(line);
 		this.fileName = sc.next();

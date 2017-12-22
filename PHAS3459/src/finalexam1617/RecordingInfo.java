@@ -7,6 +7,7 @@ public class RecordingInfo {
 
 	int sFreq, num, maxAmp, amp;
 
+	//constructor for the big document
 	public RecordingInfo() {}
 	public RecordingInfo(String line) {
 		Scanner sc = new Scanner(line);

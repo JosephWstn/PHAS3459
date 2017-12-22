@@ -68,7 +68,7 @@ public class ExamPart11617 {
 		return list;
 	}
 
-	//ArrayList of index info
+	//ArrayList of index info - this is from a file as the URL wasn't working
 	public static ArrayList<Index> indexInfo (String fileName) throws IOException{
 		ArrayList<Index> list = new ArrayList<Index>();
 		FileReader fr = new FileReader(fileName);
@@ -85,12 +85,19 @@ public class ExamPart11617 {
 
 
 	public static void main(String[] args) throws IOException {
+		
+		//array list of the information in the title line of recording 01
 		ArrayList<Integer> titleInfo = titleInfo("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording01.txt");
+		
+		//array list of all the amplitudes in recording 01
 		ArrayList<Integer> ampList = arrayListFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording01.txt");
+		
+		//getting the index from the file
 		String saveDir = "N:";
 		String indexFile = (saveDir + File.separator + "index.txt");
 		ArrayList<Index> indexInfo = indexInfo(indexFile);
-
+		
+		//printing stuff out
 		System.out.println("index info: "+indexInfo);
 		System.out.println();
 		System.out.print("Duration of recoding01: "+duration (titleInfo));
