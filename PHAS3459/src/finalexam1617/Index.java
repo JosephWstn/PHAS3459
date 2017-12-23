@@ -16,6 +16,7 @@ public class Index {
 		sc.close();
 	}
 
+	//getters
 	public String getfileName() {
 		return this.fileName;
 	}
@@ -24,6 +25,7 @@ public class Index {
 		return this.type;
 	}
 
+	//toString
 	public String toString(){
 		return ("\nFile name: "+fileName+", Type: "+ type);
 	}

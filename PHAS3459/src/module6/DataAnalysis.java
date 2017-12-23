@@ -12,22 +12,22 @@ public class DataAnalysis {
 	 */
 	private static Theory bestTheory(Collection<DataPoint> data,
 			Collection<Theory> theories, GoodnessOfFitCalculator gofCalculator) {
-		
+
 		//first to know when the first loop is 
 		boolean first = true;
-		
+
 		//initialise the first chiSquared
 		double bestGoodnessOfFit = 0.0;
-		
+
 		//initialise the theory that gives best ChiSq
 		Theory bestTheory = null;
-		
+
 		//loop through the theories in the collection
 		for (Theory theory : theories) {
-			
+
 			//calculate ChiSquared for current theory
 			double gof = gofCalculator.goodnessOfFit(data, theory);
-			
+
 			//During first loop, set the current theory as the best
 			if (first) {
 				bestTheory = theory;
@@ -44,30 +44,30 @@ public class DataAnalysis {
 	}
 
 	public static void main(String[] args) throws Exception {
-		
+
 		//Set the ArrayList of datapoints from the URL
 		ArrayList<DataPoint> data = TestDataPoints.dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module6/module6-data.txt");
-		
+
 		//Set theory of y=x^2
 		Theory plOne = new PowerLawTheory(2);
-		
+
 		//Set theory of y=x^(2.05)
 		Theory plTwo = new PowerLawTheory(2.05);
-		
+
 		//Set theory of y= x^2 + 10x
 		Theory qOne = new QuadraticTheory(1,10,0);
-		
+
 		//Initialise ArrayList of Theories
 		ArrayList<Theory> ct = new ArrayList<Theory>();
-		
+
 		//add above three theories to ArrayList of theories
 		ct.add(plOne);
 		ct.add(plTwo);
 		ct.add(qOne);
-		
+
 		//set goodness of fit calculator to the chisquared method
 		GoodnessOfFitCalculator gofC = new ChiSquared();
-		
+
 		//use bestTheory to find the best of the three above theories
 		Theory bT = bestTheory(data, ct, gofC);
 		System.out.println("The theory with the lowest Chi Sqaured is "+bT);
