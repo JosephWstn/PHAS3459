@@ -8,13 +8,15 @@ public class SignalData {
 	String id;
 	
 	public SignalData(){}
+	
 	public SignalData(String line){
 		Scanner sc = new Scanner(line);
+		ArrayList<Double> volts = new ArrayList<Double>();
 		this.id=sc.next();
 		while (sc.hasNextDouble()){
-			this.voltList.add(sc.nextDouble());
+			volts.add(sc.nextDouble());
 		}
-		this.voltList.add(sc.nextDouble());
+		this.voltList = volts;
 		sc.close();
 	}
 	
@@ -24,5 +26,9 @@ public class SignalData {
 	
 	public ArrayList<Double> getVoltList(){
 		return this.voltList;
+	}
+	
+	public String toString(){
+		return ("ID: "+this.id + ".          Voltages: "+ this.voltList+"\n");
 	}
 }

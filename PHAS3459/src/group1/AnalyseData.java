@@ -16,7 +16,6 @@ public class AnalyseData {
 		return new BufferedReader(fr);
 	}
 
-
 	//find total measurements and lowest area & extent
 	static String line1;
 	public static void totandmins(BufferedReader br) throws Exception{
