@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SignalData {
+	
+	//member variables
 	ArrayList<Double> voltList;
 	String id;
 	
 	public SignalData(){}
 	
+	//how to read each line
 	public SignalData(String line){
 		Scanner sc = new Scanner(line);
 		ArrayList<Double> volts = new ArrayList<Double>();
@@ -29,6 +32,6 @@ public class SignalData {
 	}
 	
 	public String toString(){
-		return ("ID: "+this.id + ".          Voltages: "+ this.voltList+"\n");
+		return ("ID: "+this.id + ". Voltages: "+ this.voltList+"\n");
 	}
 }

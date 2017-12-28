@@ -16,12 +16,12 @@ public class ExamPart11516 {
 	public static ArrayList<SignalData> pulsesList(String urlName) throws IOException{
 		//initialise the arraylist of integers
 		ArrayList<SignalData> list = new ArrayList<SignalData>();
+		
 		//read the URL and set it to a buffered reader
 		URL u = new URL(urlName);
 		InputStream is = u.openStream();
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
-		//boolean to only consider the first line
 		String line;
 		while ((line = br.readLine()) != null){
 			SignalData currentLine = new SignalData(line);
@@ -41,6 +41,8 @@ public class ExamPart11516 {
 		HashMap<String, Double> detectorDistancesMap = new HashMap<String, Double>();
 		while ((line = br.readLine()) != null){
 			Detectors currentDetector = new Detectors(line);
+			
+			//put the ID and the distance in the hashmap
 			detectorDistancesMap.put(currentDetector.getID(),currentDetector.getDistance());
 		}
 		return detectorDistancesMap;
@@ -53,30 +55,31 @@ public class ExamPart11516 {
 	 * values: all of the voltages by the detectors
 	 * 
 	 * note from after doing this:
-	 * this would be a million times easier if it was HashMap<ArrayList<ArrayList<Double>> in order to keep each reading for each 
-	 * detector seperate as we need this later in the exam, i cba to change it all so i've had to make it work later in the code.
+	 * this would be a million times easier if it was HashMap<String, ArrayList<ArrayList<Double>> in order to keep each reading for each 
+	 * detector seperate as we need this later in the exam. How it works at the moment is it stores all of the data from each detector
+	 * in one massive arraylist. i cba to change it all so i've had to make it work later in the code.
 	 * I might re-write it so it's not awful like this so i can use this exact code in the exam.
 	 */
 	public static HashMap<String, ArrayList<Double>> dataIntoHashMap (ArrayList<SignalData> list){
 
-		// Create HashMap of ArrayLists to store Batter data using team as key
+		// Create HashMap of ArrayLists to store signal data using team as key
 		HashMap<String, ArrayList<Double>> sortedSignals = new HashMap<String, ArrayList<Double>>();
 
-		// Loop over complete Batter list
+		// Loop over complete data list
 		for (SignalData data: list) {
 
-			// Retrieve team for that Batter
+			// Retrieve ID for that signal
 			String ID = data.getID();
 
-			// Extract Batter list from HashMap using this team
+			// Extract voltage list from HashMap using this ID
 			ArrayList<Double> thisVoltageList = sortedSignals.get(ID);
 
-			// If this list is empty, create a new ArrayList of Batters
+			// If this list is empty, create a new ArrayList of signals
 			if (thisVoltageList == null) {
 				sortedSignals.put(ID, new ArrayList<Double>());
 			}
 
-			// Add current Batter to list of Batters for that team
+			// Add current signal to list of signals for that ID
 			sortedSignals.get(ID).addAll(data.getVoltList());
 
 		}
@@ -89,6 +92,8 @@ public class ExamPart11516 {
 	//find total number of pulses in the entire set
 	public static int totalNumberOfPulses(ArrayList<SignalData> list){
 		int tot=0;
+		
+		//loop through the arraylist of data, getting the voltlist for each
 		for (int i =0; i < list.size(); i++){
 			tot += list.get(i).getVoltList().size();
 		}
@@ -99,21 +104,31 @@ public class ExamPart11516 {
 	public static double meanAmplitude(ArrayList<SignalData> list){
 		double sum = 0;
 		ArrayList<Double> currentVolts = new ArrayList<Double>();
+		
+		//loop through data arraylist, summing the voltages
 		for (int i = 0; i <list.size(); i++){
 			currentVolts = list.get(i).getVoltList();
 			for(int j=0; j<currentVolts.size(); j++){
 				sum += currentVolts.get(j);
 			}
 		}
+		
+		//divide by total number of pulses
 		return sum / (double) totalNumberOfPulses(list);
 	}
 
 	//number of signals from each detector
 	public static ArrayList<Integer> individualNumberOfSignals(HashMap<String, ArrayList<Double>> map){
+		//initialise arraylist that will contain number of signals for each detector
 		ArrayList<Integer> numberOfSignals = new ArrayList<Integer>();
+		
+		//make an arraylist of the names of all the IDs from the hashmap
 		ArrayList<String> IDList = new ArrayList<String>();
 		IDList.addAll((map.keySet()));
+		
+		//loop through the hashmap
 		for(int i =0; i < map.size(); i++){
+			//get the number of volts of the current ID
 			ArrayList<Double> currentVolts = map.get(IDList.get(i));
 			numberOfSignals.add(currentVolts.size());
 		}
@@ -122,24 +137,40 @@ public class ExamPart11516 {
 
 	//mean amplitude from each detector
 	public static ArrayList<Double> individualMeanAmplitudes (HashMap<String, ArrayList<Double>> map){
+		//initialise arraylist that will contain the mean amplitudes from each detector
 		ArrayList<Double> meanAmplitudes = new ArrayList<Double>();
+		
+		//get an arraylist of the IDs from the hashmap
 		ArrayList<String> IDList = new ArrayList<String>();
 		IDList.addAll(map.keySet());
+		
+		//loop through the map
 		for(int i =0; i < map.size(); i++){
 			double sum = 0;
+			
+			//get the volt arraylist of the current ID
 			ArrayList<Double> currentVolts = map.get(IDList.get(i));
+			
+			//loop throuh the volt arraylist, adding them up
 			for(int j =0; j < currentVolts.size(); j++){
 				sum += currentVolts.get(j);
 			}
+			
+			//divide the voltage sum by the number of reading
 			meanAmplitudes.add(sum/currentVolts.size());
 		}
 		return meanAmplitudes;
 	}
 
-	//find the mean arrival times for each of the detectors - this method is kind of a shit show because i did my hashmap badly. I explain why in the method
+	/*
+	 * find the mean arrival times for each of the detectors
+	 * arguments: hashmap. Keys: detector IDs. Values: arraylist of the voltages from that detector
+	 * output: hashmap. Keys: detector IDs. Values: arrival times
+	 * this method is kind of a shit show because i did my hashmap badly. I explain why in the method
+	 */
 	public static HashMap<String, Double> meanArrivalTimes(HashMap<String, ArrayList<Double>> map){
 
-		//this is to get an arraylist of the IDs from the map
+		//get an arraylist of the IDs from the map
 		ArrayList<String> IDList = new ArrayList<String>();
 		IDList.addAll(map.keySet());
 
@@ -153,7 +184,7 @@ public class ExamPart11516 {
 		//array list of the arrival times in order to find the average
 		ArrayList<Double> ArrivalTimes = new ArrayList<Double>();
 
-		//arrival time of each data set, these will be added to the array list above
+		//mean arrival time of each data set, these will be added to the array list above
 		double meanArrivalTime;
 
 		//sum of the arrival times to find the average
@@ -171,9 +202,9 @@ public class ExamPart11516 {
 
 			/*
 			 * i need this value of k because i messed up how i did the hashmap:
-			 * the values in the hashmap is an arraylist of all the voltages from a particular detector - it is no longer split up
-			 * into the different data collection sets. I use this value of k to monitor how far along the big array I have gone, and
-			 * correct this mistake.
+			 * the values in the hashmap are a big arraylist of all the voltages from a particular detector - it is no longer split up
+			 * into the different data collection sets. I use this value of k to monitor how far along the big arraylist I have gone, so 
+			 * I can kind of split it back up into the individual data sets.
 			 * k needs to start at -1 as the loop that adds one to k runs on the first loop (j=0)
 			 */
 			int k =-1;
@@ -187,25 +218,27 @@ public class ExamPart11516 {
 			//loop through the current voltages of the current detector ID
 			for(int j = 0; j<currentVoltages.size(); j++){
 
-				//current voltages is the value in position j in the currentVoltages array
+				//current voltage is the value in position j in the currentVoltages arraylist
 				double currentVoltage = currentVoltages.get(j);
 
-				//update max voltage and arrivaltime if we need to 
+				//update max voltage and arrivaltime(maxVTime) if we need to 
 				if(currentVoltage > maxVoltage){
 					maxVoltage = currentVoltage;
 
 					//I take off (k*51) as this is how many values came before it in other sets (because it is looping through one big array of all the voltages from that detector)
+					//the number of loops is the time because it says each loop is 1ns or something
 					maxVTime = j-(k*51);
 				}
 
 				/*
 				 *here's where my fuck up with the hashmap gets fixed. If the position in the voltages array is divisible by 51,
 				 *(ie, every 51 values), the max voltage and arrival time gets reset, the sum gets updated and the value of k used above
-				 *is updated.
+				 *is updated. the value of 51 is used as each data set has 51 values. 
 				 *This would have been better if the map was HashMap<String, ArrayList<ArrayList<Double>>>. This would allow the values in
 				 *the map to be array lists of each set of readings from each detector to be in its own arraylist, as opposed to one big arraylist.
 				 */
 				if(j%51 ==0){
+					//reset everything for the new data set
 					ArrivalTimes.add(maxVTime);
 					arrivalTimeSum += maxVTime;
 					maxVoltage = 0;
@@ -222,12 +255,20 @@ public class ExamPart11516 {
 		return meanArrivalTimes;
 	}
 
-	//find the speeds of the things ie mean arrival times / distance
+
+	/*
+	 *find the speeds of the things ie mean arrival times / distance
+	 *argument: HashMap. Key: detector IDs. Values: mean arrival times for each detector
+	 *output: arraylist of the speeds for each detector
+	 *NOTE: this method does not use raw data. It uses the hashmap that is outputted from the meanArrivalTime method above.
+	 *using this hashmap as the argument saves a bunch of repeated code 
+	 */
 	public static ArrayList<Double> speeds (HashMap<String, Double> meanArrivalTimes, HashMap<String,Double> distances){
+		//as usual, find the IDList arraylist (maybe i should have made this a method by itself to save room)
 		ArrayList<String> IDList = new ArrayList<String>();
 		IDList.addAll(meanArrivalTimes.keySet());
 
-		ArrayList<Double> meanArrivalTimesList = new ArrayList<Double>();
+		//arraylist that will contain the speed for each detector
 		ArrayList<Double> speeds = new ArrayList<Double>();
 
 		double currentArrivalTime, currentDistance, currentSpeed;
@@ -238,6 +279,7 @@ public class ExamPart11516 {
 			//get current ID
 			String currentID = IDList.get(i);
 
+			//update everything for this ID
 			currentArrivalTime = meanArrivalTimes.get(currentID);
 			currentDistance = distances.get(currentID);
 
@@ -256,8 +298,10 @@ public class ExamPart11516 {
 		//total number of pulses in the data
 		System.out.print("Total number of pulses: "+ totalNumberOfPulses(sDList));
 
-		//turn the data into a hashmap
+		//turn the signal data into a hashmap
 		HashMap<String, ArrayList<Double>> sDMap = dataIntoHashMap(sDList);
+		
+		//find and print everything i need
 		System.out.println();
 		System.out.println("Mean of all pulses: "+meanAmplitude(sDList));
 		System.out.println("The detectors are: "+ sDMap.keySet());

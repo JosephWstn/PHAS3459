@@ -12,6 +12,8 @@ public class ThresholdMethod implements ArrivalTimeMethod {
 		this.map = map;
 	}
 
+	//note - almost all of this is copied and pasted from exampart21516 as it is finding the same thing.
+	//only difference is the arrival time is the time until the first reading above 1V
 	@Override
 	public HashMap<String,Double> time(HashMap<String, ArrayList<Double>> map) {
 
@@ -68,7 +70,7 @@ public class ThresholdMethod implements ArrivalTimeMethod {
 				//current voltages is the value in position j in the currentVoltages array
 				double currentVoltage = currentVoltages.get(j);
 
-				//update max voltage and arrivaltime if we need to 
+				//update what the arrival time is if this is the fist in this data set above 1V 
 				if(currentVoltage > threshold && firstAboveThreshold == true){
 					//I take off (k*51) as this is how many values came before it in other sets (because it is looping through one big array of all the voltages from that detector)
 					arrivalTime = j-(k*51);
@@ -87,6 +89,8 @@ public class ThresholdMethod implements ArrivalTimeMethod {
 					arrivalTimeSum += arrivalTime;
 					arrivalTime= 0;
 					k++;
+					
+					//first is now true as we've covered 51 values so are going into a new data set
 					firstAboveThreshold = true;
 				}
 			}

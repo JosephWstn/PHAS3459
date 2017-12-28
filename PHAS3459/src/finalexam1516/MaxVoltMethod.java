@@ -13,6 +13,7 @@ public class MaxVoltMethod implements ArrivalTimeMethod {
 	}
 	
 	@Override
+	//note- this is an exact copy from exampart21516 as we're finding the same thing
 	public HashMap<String, Double> time(HashMap<String, ArrayList<Double>> map) {
 
 		//this is to get an arraylist of the IDs from the map
@@ -98,6 +99,7 @@ public class MaxVoltMethod implements ArrivalTimeMethod {
 		return meanArrivalTimes;
 	}
 	
+	//how to output an arrivaltimemethod obbject
 	public String toString(){
 		return time(this.map).toString();
 		

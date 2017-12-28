@@ -4,9 +4,11 @@ import java.util.Scanner;
 
 public class Detectors {
 
+	//member variables
 	double distance;
 	String id;
 	
+	//how to read each line like always
 	public Detectors(){}
 	public Detectors(String line){
 		Scanner sc = new Scanner(line);
@@ -15,6 +17,7 @@ public class Detectors {
 		sc.close();
 	}
 	
+	//getter methods
 	public String getID(){
 		return this.id;
 	}
