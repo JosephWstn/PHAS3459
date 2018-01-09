@@ -31,7 +31,35 @@ public class ExamPart11415 {
 		return list;
 	}
 
-	//
+	
+	//make a hashmap of the data sorted into the IDs, i have this and the arraylist of all of them so i can just use which ever is most convenient
+	public static HashMap<String, ArrayList<Measurement>> dataIntoHashMap (ArrayList<Measurement> list){
+
+		// Create HashMap of ArrayLists to store signal data using team as key
+		HashMap<String, ArrayList<Measurement>> sortedMeasurements = new HashMap<String, ArrayList<Measurement>>();
+
+		// Loop over complete data list
+		for (Measurement data: list) {
+
+			// Retrieve ID for that signal
+			String ID = data.getID();
+
+			// Extract measurement list from HashMap using this ID
+			ArrayList<Measurement> thisMeasurementList = sortedMeasurements.get(ID);
+
+			// If this list is empty, create a new ArrayList of measurements
+			if (thisMeasurementList == null) {
+				sortedMeasurements.put(ID, new ArrayList<Measurement>());
+			}
+
+			// Add current measurement to list of measurements for that ID
+			sortedMeasurements.get(ID).add(data);
+		}
+		return sortedMeasurements;
+	}
+	
+	
+	//this makes a hashmap of the sites and their IDs
 	public static HashMap<String, String> siteMap(String urlName) throws IOException{
 		HashMap<String, String> map = new HashMap<String, String>(); 
 

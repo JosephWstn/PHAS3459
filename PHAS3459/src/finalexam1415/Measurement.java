@@ -16,15 +16,31 @@ public class Measurement {
 	public Measurement(){}
 	public Measurement(String line){
 		Scanner sc = new Scanner(line);
-		this.id=sc.next();
-		this.year = sc.nextInt();
-		this.month = sc.nextInt();
-		this.day = sc.nextInt();
-		this.hour = sc.nextInt();
-		this.minute = sc.nextInt();
-		this.level = sc.nextDouble();
-		this.pLevel = sc.nextDouble();
-		sc.close();
+
+		//this if statement is for the last part of part 3 where the order of each line gets changed
+		if(sc.hasNextDouble()){
+			this.year = sc.nextInt();
+			this.month = sc.nextInt();
+			this.day = sc.nextInt();
+			this.hour = sc.nextInt();
+			this.minute = sc.nextInt();
+			this.id=sc.next();
+			this.level = sc.nextDouble();
+			this.pLevel = sc.nextDouble();
+			sc.close();
+		}
+
+		else{
+			this.id=sc.next();
+			this.year = sc.nextInt();
+			this.month = sc.nextInt();
+			this.day = sc.nextInt();
+			this.hour = sc.nextInt();
+			this.minute = sc.nextInt();
+			this.level = sc.nextDouble();
+			this.pLevel = sc.nextDouble();
+			sc.close();
+		}
 	}
 
 	//getter methods
@@ -58,5 +74,9 @@ public class Measurement {
 
 	public double getPLevel(){
 		return this.pLevel;
+	}
+
+	public String toString(){
+		return ("Site ID: " + this.id +"\nYear: "+this.year +"\nMonth: "+ this.month +"\nDay: "+this.day+"\nHour: "+this.hour+"\nMinute: "+this.minute+"\nLevel Recorded: "+this.level+"\nLevel Predicted: "+this.pLevel);
 	}
 }
