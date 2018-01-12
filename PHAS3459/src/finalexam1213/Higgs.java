@@ -15,9 +15,6 @@ public class Higgs {
 		this.energy=sc.nextDouble();
 
 		sc.close();
-
-
-
 	}
 
 	//getters
