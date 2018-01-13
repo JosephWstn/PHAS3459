@@ -39,7 +39,6 @@ public class LowOrMediumOrHigh implements SoundClassification{
 		sDList.add(sD100);
 		sDList.add(sD400);
 		sDList.add(sD1000);
-		System.out.println(sDList);
 		if (Collections.max(sDList) == sD100){
 			return ("low");
 		}

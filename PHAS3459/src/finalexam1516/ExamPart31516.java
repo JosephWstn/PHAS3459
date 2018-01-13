@@ -61,6 +61,12 @@ public class ExamPart31516 {
 		return biggestDifference;
 	}
 	
+	
+	//initialise arrivaltimemethods for the two methods
+	static ArrivalTimeMethod maxVoltMAT = new MaxVoltMethod();
+	static ArrivalTimeMethod thresholdMAT = new ThresholdMethod(1);
+	
+	
 	public static void main(String[] args) throws IOException {
 		//arraylist of all of the signal datas
 		ArrayList<SignalData> sDList = ExamPart11516.pulsesList("http://www.hep.ucl.ac.uk/undergrad/3459/exam_data/2015-16/signals.txt");
@@ -69,9 +75,7 @@ public class ExamPart31516 {
 		//turn the data into a hashmap
 		HashMap<String, ArrayList<Double>> sDMap = ExamPart11516.dataIntoHashMap(sDList);
 		
-		//initialise arrivaltimemethods for the two methods
-		ArrivalTimeMethod maxVoltMAT = new MaxVoltMethod(sDMap);
-		ArrivalTimeMethod thresholdMAT = new ThresholdMethod(sDMap);
+
 		
 		
 		HashMap<String, ArrayList<Double>> biggestDifference= comparison(maxVoltMAT, thresholdMAT, sDMap);

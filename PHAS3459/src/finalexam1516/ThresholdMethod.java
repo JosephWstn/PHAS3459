@@ -7,9 +7,11 @@ public class ThresholdMethod implements ArrivalTimeMethod {
 
 	HashMap<String, ArrayList<Double>> map = new HashMap<String, ArrayList<Double>>();
 
+	double threshold;
+	
 	public ThresholdMethod(){}
-	public ThresholdMethod(HashMap<String, ArrayList<Double>> map){
-		this.map = map;
+	public ThresholdMethod(double threshold){
+		this.threshold = threshold;
 	}
 
 	//note - almost all of this is copied and pasted from exampart21516 as it is finding the same thing.
@@ -17,8 +19,6 @@ public class ThresholdMethod implements ArrivalTimeMethod {
 	@Override
 	public HashMap<String,Double> time(HashMap<String, ArrayList<Double>> map) {
 
-
-		double threshold=1;
 
 		//this is to get an arraylist of the IDs from the map
 		ArrayList<String> IDList = new ArrayList<String>();
@@ -71,7 +71,7 @@ public class ThresholdMethod implements ArrivalTimeMethod {
 				double currentVoltage = currentVoltages.get(j);
 
 				//update what the arrival time is if this is the fist in this data set above 1V 
-				if(currentVoltage > threshold && firstAboveThreshold == true){
+				if(currentVoltage > this.threshold && firstAboveThreshold == true){
 					//I take off (k*51) as this is how many values came before it in other sets (because it is looping through one big array of all the voltages from that detector)
 					arrivalTime = j-(k*51);
 					firstAboveThreshold = false;

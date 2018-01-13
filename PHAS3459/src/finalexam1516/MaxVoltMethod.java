@@ -8,9 +8,6 @@ public class MaxVoltMethod implements ArrivalTimeMethod {
 	HashMap<String, ArrayList<Double>> map = new HashMap<String, ArrayList<Double>>();
 	
 	public MaxVoltMethod(){}
-	public MaxVoltMethod(HashMap<String, ArrayList<Double>> map){
-		this.map = map;
-	}
 	
 	@Override
 	//note- this is an exact copy from exampart21516 as we're finding the same thing

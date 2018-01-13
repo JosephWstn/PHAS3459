@@ -49,6 +49,8 @@ public class ExamPart11617 {
 		return (double) list.get(1)/ (double)list.get(0);
 	}
 
+	
+
 	//ArrayList of the amplitudes (ie data after first line) 
 	public static ArrayList<Integer> arrayListFromURL(String urlName) throws IOException{
 		//initialise arraylist of integers
@@ -74,18 +76,25 @@ public class ExamPart11617 {
 		return list;
 	}
 
-	//ArrayList of index info - this is from a file as the URL wasn't working
-	public static ArrayList<Index> indexInfo (String fileName) throws IOException{
+	
+	//arraylist of the index information from the URL.
+	//throwing both exception and ioexception bc trying to make it work
+	public static ArrayList<Index> indexInfoURL (String urlName)  throws Exception, IOException{
 		ArrayList<Index> list = new ArrayList<Index>();
-		FileReader fr = new FileReader(fileName);
-		BufferedReader br = new  BufferedReader(fr);
+		//read URL and turn it into buffered reader
+		URL u = new URL(urlName);
+		InputStream is = u.openStream();
+		InputStreamReader isr = new InputStreamReader(is);
+		BufferedReader br = new BufferedReader(isr);
 		String line;
+		//put the indexes into the list
 		while ((line = br.readLine()) != null){
 			Index current = new Index (line);
 			list.add(current);
 		}
 		return list;
 	}
+
 
 	//root mean square calculator, pretty intuitive from the equstion
 	public static double amplitude (ArrayList<Integer> ampList, ArrayList<Integer> titleInfo){
@@ -99,29 +108,88 @@ public class ExamPart11617 {
 	}
 
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
+		try{
+			//array list of the information in the title line of recordings 
+			ArrayList<Integer> titleInfo01 = titleInfo("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording01.txt");
+			ArrayList<Integer> titleInfo02 = titleInfo("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording02.txt");
+			ArrayList<Integer> titleInfo03 = titleInfo("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording03.txt");
+			ArrayList<Integer> titleInfo04 = titleInfo("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording04.txt");
+			
+			
+			
+			//array list of all the amplitudes in recording 01
+			ArrayList<Integer> ampList01 = arrayListFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording01.txt");
+			ArrayList<Integer> ampList02 = arrayListFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording02.txt");
+			ArrayList<Integer> ampList03 = arrayListFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording03.txt");
+			ArrayList<Integer> ampList04 = arrayListFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording04.txt");
+			
 
-		//array list of the information in the title line of recording 01
-		ArrayList<Integer> titleInfo01 = titleInfo("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording01.txt");
-
-		//array list of all the amplitudes in recording 01
-		ArrayList<Integer> ampList01 = arrayListFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording01.txt");
-
-		//getting the index from the file
-		String saveDir = "N:";
-		String indexFile = (saveDir + File.separator + "index.txt");
-		ArrayList<Index> indexInfo = indexInfo(indexFile);
-
-		double amp01 = amplitude(ampList01, titleInfo01); 
-
-		//printing stuff out for recording 01:
-
-		System.out.println("Recording 01 information: ");
-		System.out.println();
-		System.out.println(indexInfo.get(0));
-		System.out.println();
-		System.out.print("Duration of recoding01: "+duration (titleInfo01));
-		System.out.println();
-		System.out.println("Amplitude of recording01: "+amp01);
+			ArrayList<Index> indexInfo = indexInfoURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/index.txt"); 
+					
+			
+			double amp01 = amplitude(ampList01, titleInfo01); 
+			double amp02 = amplitude(ampList02, titleInfo02); 
+			double amp03 = amplitude(ampList03, titleInfo03); 
+			double amp04 = amplitude(ampList04, titleInfo04); 
+			
+			
+			//printing stuff out for recording 01:
+			System.out.println("Recording 01 information: ");
+			//System.out.println(indexInfo2.get(0));
+			System.out.print("Duration of recoding01: "+duration (titleInfo01));
+			System.out.println("\nAmplitude of recording01: "+amp01);
+			
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			
+			//printing stuff out for recording 02:
+			System.out.println("Recording 02 information: ");
+			//System.out.println(indexInfo2.get(1));
+			System.out.print("Duration of recoding02: "+duration (titleInfo02));
+			System.out.println("\nAmplitude of recording02: "+amp02);
+			
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			
+			//printing stuff out for recording 03:
+			System.out.println("Recording 03 information: ");
+			//System.out.println(indexInfo2.get(2));
+			System.out.print("Duration of recoding03: "+duration (titleInfo03));
+			System.out.println("\nAmplitude of recording03: "+amp03);
+			
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			
+			//printing stuff out for recording 04:
+			System.out.println("Recording 04 information: ");
+			//System.out.println(indexInfo2.get(3));
+			System.out.print("Duration of recoding04: "+duration (titleInfo04));
+			System.out.println("\nAmplitude of recording04: "+amp04);
+			
+			
+			System.out.println();
+			System.out.println();
+			System.out.println();
+			
+			System.out.println("The corresponding instruments are: ");
+			for(int i =0; i<3 ; i++){
+				System.out.println(indexInfo.get(i));
+			}
+			
+		}
+		
+		//catching the exception and the ioexception
+		catch (IOException E){
+			E.printStackTrace();
+			System.out.println("incorrect URL: IOException");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("Incorrect URL: Regular Exception");
+		}
 	}
 }
