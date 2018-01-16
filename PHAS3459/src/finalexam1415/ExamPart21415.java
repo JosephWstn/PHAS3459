@@ -79,8 +79,8 @@ public class ExamPart21415 {
 	public static void main(String[] args) throws IOException {
 		HashMap<String, Double> meanMap = means(ExamPart11415.dataIntoHashMap(ExamPart11415.MeasurementList("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2014-15/tides-1999.txt")));
 		HashMap<String, Double> rangeMap = ranges(ExamPart11415.dataIntoHashMap(ExamPart11415.MeasurementList("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2014-15/tides-1999.txt")));
-		System.out.println(meanMap);
-		System.out.println(rangeMap);
+		System.out.println("Means: "+meanMap);
+		System.out.println("Ranges: "+rangeMap);
 	}
 
 }
