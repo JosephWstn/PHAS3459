@@ -134,8 +134,10 @@ public class ExamPart11011 {
 		HashMap<String, String> stations = stationMapFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2010-11/final/stations.txt");
 		ArrayList<Reading> dataTMAX = typeMap.get("TMAX");
 		ArrayList<Reading> maxTemps = maxTemp(dataTMAX);
+		
+		System.out.println(dataTMAX);
 		System.out.println("The highest temperature recorded was: "+Collections.max(maxTemps.get(0).getMonthData()));
-		System.out.println("The information about the times the highest temperature was recorded is: "+maxTemps);
+		System.out.println("The information about the times the highest temperature was recorded is: \n"+maxTemps);
 		
 	}
 
